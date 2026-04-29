@@ -6,12 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>Takuya Merge - タクヤを合体！</title>
     <meta name="description" content="同じタクヤをぶつけて新化させよう！" />
+
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#d4af37" />
+
+    <!-- iOS PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="タクヤMerge" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+
+    <!-- OGP -->
     <meta property="og:title" content="Takuya Merge - タクヤを合体！" />
     <meta property="og:description" content="同じタクヤをぶつけて新化させよう！" />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="/icons/icon-512.png" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
   </body>
 </html>
