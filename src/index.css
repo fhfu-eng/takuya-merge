@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overscroll-behavior: none;
+  overflow: hidden;
+  touch-action: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #080710;
+  font-family: 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', system-ui, sans-serif;
+  color: #f0e6c8;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  /* safe area for iPhone notch */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+canvas { display: block; }
+
+/* ── diagonal scroll ── */
+@keyframes diagScroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+.bg-diag-outer {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-diag-rotator {
+  position: absolute;
+  width: 220%;
+  height: 400%;
+  top: -150%;
+  left: -60%;
+  transform: rotate(-22deg);
+  transform-origin: center center;
+}
+
+.bg-diag-scroll {
+  animation: diagScroll 100s linear infinite;
+}
+
+/* ── luxury glass panel ── */
+.lux-panel {
+  background: linear-gradient(135deg, rgba(20,14,42,0.92) 0%, rgba(12,9,28,0.96) 100%);
+  border: 1px solid rgba(212,175,55,0.35);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 0 0 1px rgba(212,175,55,0.08),
+    inset 0 1px 0 rgba(212,175,55,0.15),
+    0 8px 32px rgba(0,0,0,0.6);
+}
+
+/* ── gold text ── */
+.gold-text {
+  background: linear-gradient(135deg, #f5e27d 0%, #d4af37 40%, #c8980a 70%, #f0d060 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── lux button ── */
+.lux-btn {
+  background: linear-gradient(135deg, rgba(30,20,60,0.9), rgba(15,10,35,0.95));
+  border: 1px solid rgba(212,175,55,0.4);
+  color: #d4af37;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.lux-btn:hover {
+  background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.08));
+  border-color: rgba(212,175,55,0.8);
+  box-shadow: 0 0 12px rgba(212,175,55,0.25), 0 2px 8px rgba(0,0,0,0.4);
+}
+.lux-btn-danger {
+  border-color: rgba(220,60,60,0.4);
+  color: #f87171;
+}
+.lux-btn-danger:hover {
+  background: linear-gradient(135deg, rgba(220,60,60,0.15), rgba(220,60,60,0.08));
+  border-color: rgba(220,60,60,0.8);
+  box-shadow: 0 0 12px rgba(220,60,60,0.2), 0 2px 8px rgba(0,0,0,0.4);
+}
